@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -86,21 +86,6 @@
     color: #333;
   }
 
-  .credentials {
-    margin-top: 1.5rem;
-    border-top: 1px solid #ddd;
-    padding-top: 1rem;
-  }
-
-  .credentials h3 {
-    font-size: 1.1rem;
-    color: #005fa3;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-  }
-
-  .credential-item { margin-bottom: 1rem; }
-
   .projects {
     display: flex;
     flex-direction: column;
@@ -127,6 +112,12 @@
     margin-bottom: 1rem;
   }
 
+  .summary h4 {
+    color: #005fa3;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
   .links {
     margin-top: 1rem;
     display: flex;
@@ -142,10 +133,12 @@
     font-weight: bold;
   }
 
+  /* Updated to 4:3 Ratio */
   .carousel {
     position: relative;
     overflow: hidden;
-    height: 400px;
+    width: 100%;
+    aspect-ratio: 4 / 3; 
     border-radius: 8px;
     margin-bottom: 1rem;
     background: #ddd;
@@ -175,12 +168,12 @@
     text-align: center;
     line-height: 50px;
     cursor: pointer;
+    z-index: 10;
   }
 
   .arrow.left { left: 10px; }
   .arrow.right { right: 10px; }
 
-  /* Embedded video */
   .video-embed {
     position: relative;
     padding-bottom: 56.25%;
@@ -207,8 +200,15 @@
     text-align: center;
   }
 
+  .drone-list {
+    padding-left: 1.2rem;
+  }
+
+  .drone-list li {
+    margin-bottom: 0.8rem;
+  }
+
   @media(max-width: 600px) {
-    .carousel { height: 250px; }
     header h1 { font-size: 2rem; }
     .about { flex-direction: column; }
   }
@@ -231,7 +231,7 @@
     <img src="photo.jpg" alt="Matthew Abbate">
     <div class="about-text">
       <p class="bio">
-        I am a Controls Engineer passionate about where control systems, electrical, and mechanical engineering intersect. Take a look at some of my projects!
+        Hey, I'm Matthew. I am a Controls Engineer who loves getting into the weeds where code, circuits, and mechanical parts meet. I spend most of my time building and tuning things that move, from self-balancing robots to high-performance drones. I'm always looking for ways to make systems more efficient and responsive, and you can see some of my favorite builds below.
       </p>
     </div>
   </div>
@@ -242,7 +242,6 @@
 
   <div class="projects">
 
-    <!-- ROBOT PROJECT -->
     <div class="project-card">
       <h3>ESP-32 Balancing Robot</h3>
 
@@ -256,32 +255,29 @@
         <span class="arrow right" onclick="nextSlide('robot-carousel')">&#10095;</span>
       </div>
 
-<div class="video-embed">
-  <iframe
-    src="https://www.youtube.com/watch?v=aUHZ7bV_BnQ"
-    title="ESP-32 Balancing Robot Demo"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</div>
+      <div class="video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/aUHZ7bV_BnQ"
+          title="ESP-32 Balancing Robot Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
 
       <div class="summary">
-        <strong>Summary:</strong> Self-balancing robot using an ESP32, MPU6050 IMU with complementary filtering, and a cascaded control loop arcitecture. 
+        <p>This project is a self-balancing robot built on the ESP32 platform using an MPU6050 IMU for tilt sensing and stepper motors for movement.</p>
 
-        The Control System
-I used a cascaded PID setup to keep everything stable. The outer PI loop handles the velocity by figuring out the right lean angles while the inner PD loop keeps it balanced. It pulls tilt data from the IMU and calculates motor corrections 100 times every second.
+        <h4>The Control System</h4>
+        <p>I used a cascaded PID setup to keep everything stable. The outer PI loop handles the velocity by figuring out the right lean angles while the inner PD loop keeps it balanced. It pulls tilt data from the IMU and calculates motor corrections 100 times every second.</p>
 
-Wireless PS4 Control
-For steering, I’m using a PS4 controller connected via the Bluepad32 library. The left stick controls the throttle and the X-axis handles the steering. I also added some adaptive filtering and speed-dependent gains so it doesn’t get twitchy or flip over when you’re turning at high speeds.
+        <h4>Wireless PS4 Control</h4>
+        <p>For steering, I am using a PS4 controller connected via the Bluepad32 library. The left stick controls the throttle and the X axis handles the steering. I also added some adaptive filtering and speed dependent gains so it does not get twitchy or flip over when you are turning at high speeds.</p>
 
-Sensor Fusion
-To get the tilt angle right, I went with a complementary filter instead of a heavy Kalman filter. It basically trusts the gyroscope for 99% of the data to get that fast response, and then uses the accelerometer for the last 1% just to fix any drift. It’s super efficient and keeps the accuracy within 0.2 degrees.
+        <h4>Sensor Fusion</h4>
+        <p>To get the tilt angle right, I went with a complementary filter instead of a heavy Kalman filter. It basically trusts the gyroscope for 99 percent of the data to get that fast response, and then uses the accelerometer for the last 1 percent just to fix any drift. It is super efficient and keeps the accuracy within 0.2 degrees.</p>
 
-Efficiency and Feedback
-The code is entirely non-blocking and event-driven. This means the balance control runs on its own trigger without getting slowed down by the controller polling or the LEDs. I even programmed in some audio feedback, so if you hit the R1 button, it plays the Indiana Jones theme through the buzzer.
-
-ESP32 Processing
-Since the ESP32 has two cores, I split the workload to keep it responsive. Core 1 is dedicated to the time-critical stuff like balance math and pulsing the stepper motors. Meanwhile, Core 0 handles the Bluetooth connection. I also bumped the I²C speed to 400kHz and disabled the standard BLE to make sure there’s zero lag in the controls.
+        <h4>Efficiency and Processing</h4>
+        <p>The code is entirely non-blocking and event-driven. Since the ESP32 has two cores, I split the workload to keep it responsive. Core 1 is dedicated to the time-critical stuff like balance math and pulsing the stepper motors. Meanwhile, Core 0 handles the Bluetooth connection. I also bumped the I2C speed to 400kHz and disabled the standard BLE to make sure there is zero lag in the controls.</p>
       </div>
 
       <div class="links">
@@ -289,7 +285,6 @@ Since the ESP32 has two cores, I split the workload to keep it responsive. Core 
       </div>
     </div>
 
-    <!-- DRONE PROJECT -->
     <div class="project-card">
       <h3>Quadcopter Drone Build</h3>
 
@@ -304,13 +299,14 @@ Since the ESP32 has two cores, I split the workload to keep it responsive. Core 
       </div>
 
       <div class="summary">
-        <strong>Summary:</strong> Custom quadcopter build including frame assembly, ESC calibration, and PID flight controller tuning using collected "black box" flight data. 
-      </div>
-
-      <div class="links">
-        <!--
-        <a href="https://www.youtube.com/watch?v=aUHZ7bV_BnQ">Watch Demo</a>
-        -->
+        <p>Following the industry-standard FPV architecture, I built a custom high-performance quadcopter from the ground up with a focus on clean electrical assembly and control theory.</p>
+        <ul class="drone-list">
+          <li>Assembled a high-strength carbon fiber frame designed for durability and optimal weight distribution of the electronic stack.</li>
+          <li>Soldered a 4-in-1 Electronic Speed Controller (ESC) to high-KV brushless motors, ensuring clean signal paths and robust power delivery for 6S battery voltage.</li>
+          <li>Configured the Betaflight flight controller firmware, including motor resource remapping and peripheral setup for the ELRS radio link and FPV video system.</li>
+          <li>Performed field-tuning of the PID (Proportional-Integral-Derivative) controller to eliminate prop-wash oscillations and achieve a "locked-in" flight feel.</li>
+          <li>Implemented Blackbox data logging to analyze flight performance and fine-tune dynamic notch filters for motor noise reduction.</li>
+        </ul>
       </div>
     </div>
 
@@ -319,7 +315,7 @@ Since the ESP32 has two cores, I split the workload to keep it responsive. Core 
 
 <section class="contact">
   <h2>Contact Me</h2>
-  <p>Email: <a href="mailto:matthew.c.abbate@gmail.com">matthew.c.abbate@gmail.com</a></p>
+  <p>Email: <a href="mailto:matthew.c.abbate@gmail.com" style="color: white;">matthew.c.abbate@gmail.com</a></p>
   <a href="resume.pdf" download><button>Download Resume</button></a>
 </section>
 
