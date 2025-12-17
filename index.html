@@ -219,7 +219,7 @@
 
 <header>
   <h1>Matthew Abbate</h1>
-  <p>Controls Engineer | Robotics | Embedded Systems</p>
+  <p>Controls Engineer | Robotics | Mechatronics</p>
   <a href="#projects"><button>View My Projects</button></a>
 </header>
 
@@ -231,7 +231,7 @@
     <img src="photo.jpg" alt="Matthew Abbate">
     <div class="about-text">
       <p class="bio">
-        Hi! I’m Matthew Abbate. I am a Controls Engineer passionate about robotics and embedded systems.
+        I am a Controls Engineer passionate about where control systems, electrical, and mechanical engineering intersect. Take a look at some of my projects!
       </p>
     </div>
   </div>
@@ -258,7 +258,7 @@
 
 <div class="video-embed">
   <iframe
-    src="https://youtu.be/aUHZ7bV_BnQ"
+    src="https://www.youtube.com/watch?v=aUHZ7bV_BnQ"
     title="ESP-32 Balancing Robot Demo"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen>
@@ -266,7 +266,22 @@
 </div>
 
       <div class="summary">
-        <strong>Summary:</strong> Self-balancing robot using an ESP32, IMU sensor fusion, Kalman filtering, and closed-loop motor control.
+        <strong>Summary:</strong> Self-balancing robot using an ESP32, MPU6050 IMU with complementary filtering, and a cascaded control loop arcitecture. 
+
+        The Control System
+I used a cascaded PID setup to keep everything stable. The outer PI loop handles the velocity by figuring out the right lean angles while the inner PD loop keeps it balanced. It pulls tilt data from the IMU and calculates motor corrections 100 times every second.
+
+Wireless PS4 Control
+For steering, I’m using a PS4 controller connected via the Bluepad32 library. The left stick controls the throttle and the X-axis handles the steering. I also added some adaptive filtering and speed-dependent gains so it doesn’t get twitchy or flip over when you’re turning at high speeds.
+
+Sensor Fusion
+To get the tilt angle right, I went with a complementary filter instead of a heavy Kalman filter. It basically trusts the gyroscope for 99% of the data to get that fast response, and then uses the accelerometer for the last 1% just to fix any drift. It’s super efficient and keeps the accuracy within 0.2 degrees.
+
+Efficiency and Feedback
+The code is entirely non-blocking and event-driven. This means the balance control runs on its own trigger without getting slowed down by the controller polling or the LEDs. I even programmed in some audio feedback, so if you hit the R1 button, it plays the Indiana Jones theme through the buzzer.
+
+ESP32 Processing
+Since the ESP32 has two cores, I split the workload to keep it responsive. Core 1 is dedicated to the time-critical stuff like balance math and pulsing the stepper motors. Meanwhile, Core 0 handles the Bluetooth connection. I also bumped the I²C speed to 400kHz and disabled the standard BLE to make sure there’s zero lag in the controls.
       </div>
 
       <div class="links">
@@ -289,12 +304,12 @@
       </div>
 
       <div class="summary">
-        <strong>Summary:</strong> Custom quadcopter build including frame assembly, ESC calibration, and flight tuning.
+        <strong>Summary:</strong> Custom quadcopter build including frame assembly, ESC calibration, and PID flight controller tuning using collected "black box" flight data. 
       </div>
 
       <div class="links">
         <!--
-        <a href="https://youtube.com/YOUR_VIDEO_LINK" target="_blank">Watch Demo</a>
+        <a href="https://www.youtube.com/watch?v=aUHZ7bV_BnQ">Watch Demo</a>
         -->
       </div>
     </div>
@@ -304,7 +319,7 @@
 
 <section class="contact">
   <h2>Contact Me</h2>
-  <p>Email: <a href="mailto:mcabbate1@gmail.com">mcabbate1@gmail.com</a></p>
+  <p>Email: <a href="mailto:matthew.c.abbate@gmail.com">matthew.c.abbate@gmail.com</a></p>
   <a href="resume.pdf" download><button>Download Resume</button></a>
 </section>
 
