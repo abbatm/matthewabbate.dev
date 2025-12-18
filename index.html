@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -86,6 +86,21 @@
     color: #333;
   }
 
+  .edu-cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .edu-cert-item h4 {
+    color: #005fa3;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
   .projects {
     display: flex;
     flex-direction: column;
@@ -133,7 +148,6 @@
     font-weight: bold;
   }
 
-  /* Updated to 4:3 Ratio */
   .carousel {
     position: relative;
     overflow: hidden;
@@ -200,17 +214,10 @@
     text-align: center;
   }
 
-  .drone-list {
-    padding-left: 1.2rem;
-  }
-
-  .drone-list li {
-    margin-bottom: 0.8rem;
-  }
-
   @media(max-width: 600px) {
     header h1 { font-size: 2rem; }
     .about { flex-direction: column; }
+    .edu-cert-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -231,8 +238,24 @@
     <img src="photo.jpg" alt="Matthew Abbate">
     <div class="about-text">
       <p class="bio">
-        I am an engineer who loves getting into the weeds where code, circuits, and mechanical parts meet. Check out some of my favorite builds below!
+        <strong>I’m a controls engineer passionate about mechatronics, where electrical mechanical and controls intersect.</strong>
       </p>
+      <p class="bio">
+        [span_2](start_span)I am currently a Controls Engineer at eMagin (a Samsung Display Company), where I lead the qualification of precision gantry systems and wafer handling robots[span_2](end_span). [span_3](start_span)My career has centered on the integration of hardware and software—from designing consumable tracking systems with Raspberry Pi to refining robotic vision systems at Sikorsky[span_3](end_span). [span_4](start_span)With an advanced background in control systems from Rensselaer Polytechnic Institute, I specialize in creating intelligent, automated solutions for complex manufacturing environments[span_4](end_span).
+      </p>
+      
+      <div class="edu-cert-grid">
+        <div class="edu-cert-item">
+          <h4>Education</h4>
+          [span_5](start_span)<p><strong>Rensselaer Polytechnic Institute</strong>[span_5](end_span)<br>
+             [span_6](start_span)Master of Engineering in Mechanical Engineering - Control Systems[span_6](end_span)<br>
+             [span_7](start_span)BS in Mechanical Engineering[span_7](end_span)</p>
+        </div>
+        <div class="edu-cert-item">
+          <h4>Certifications</h4>
+          <p><strong>FAA Part 107</strong><br>sUAS Commercial Drone Pilot</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -295,13 +318,19 @@
       </div>
 
       <div class="summary">
-        <p>This project demonstrates a high-performance FPV (first person view) quadcopter, from electrical assembly and to the controls tuning. Some aspects tuned included the PID gains via recorded flight data, designing filters to filter out resonance vibrations, and using feedforward input.</p>
-        <ul class="drone-list">
-          <li>Soldered a 4-in-1 Electronic Speed Controller (ESC) to brushless DC motors, ensuring clean signal paths.</li>
-          <li>Configured the Betaflight flight controller firmware, including motor resource remapping, ELRS radio communication and FPV video system.</li>
-          <li>Performed field-tuning of the PID controller to eliminate prop-wash oscillations and achieve high responsiveness.</li>
-          <li>Implemented Blackbox data logging to analyze flight performance and fine-tune dynamic notch filters for motor noise reduction.</li>
-        </ul>
+        <p>This project demonstrates a high-performance FPV (first person view) quadcopter, from electrical assembly and to the controls tuning. [span_8](start_span)Some aspects tuned included the PID gains via recorded flight data, designing filters to filter out resonance vibrations, and using feedforward input.[span_8](end_span)</p>
+        
+        <h4>Electrical Assembly</h4>
+        [span_9](start_span)<p>Soldered a 4-in-1 Electronic Speed Controller (ESC) to brushless DC motors, ensuring clean signal paths.[span_9](end_span)</p>
+
+        <h4>System Configuration</h4>
+        [span_10](start_span)<p>Configured the Betaflight flight controller firmware, including motor resource remapping, ELRS radio communication and FPV video system.[span_10](end_span)</p>
+
+        <h4>PID Tuning & Performance</h4>
+        [span_11](start_span)<p>Performed field-tuning of the PID controller to eliminate prop-wash oscillations and achieve high responsiveness.[span_11](end_span)</p>
+
+        <h4>Signal Processing</h4>
+        [span_12](start_span)<p>Implemented Blackbox data logging to analyze flight performance and fine-tune dynamic notch filters for motor noise reduction.[span_12](end_span)</p>
       </div>
     </div>
 
