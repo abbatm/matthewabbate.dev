@@ -84,6 +84,7 @@
     line-height: 1.7;
     font-weight: 300;
     color: #333;
+    margin-bottom: 1.5rem;
   }
 
   .edu-cert-grid {
@@ -113,6 +114,8 @@
     padding: 1.5rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border-left: 5px solid #0077cc;
+    box-sizing: border-box; /* Fix for potential "bump out" */
+    width: 100%;
   }
 
   .project-card h3 {
@@ -238,16 +241,23 @@
     <img src="photo.jpg" alt="Matthew Abbate">
     <div class="about-text">
       <p class="bio">
-        <strong>I am a Controls Engineer with expertise in mechatronics, bridging mechanical systems, electronics, controls, and software to support reliable automation.</strong>
+        <strong>I’m a controls engineer passionate about mechatronics, where electrical mechanical and controls intersect.</strong>
       </p>
+      
       <p class="bio">
-        Based out of Yorktown Heights, New York, I received my B.S. in Mechanical Engineering from Rensselaer Polytechnic Institute (RPI) in Troy, NY. I continued my education at RPI and specialized in control systems. As a graduate research assistant, I worked on a team focused on developing hybrid manufacturing, using two robots to demonstrate additive and subtractive manufacturing with metal parts. This system consisted of one repurposed welding robot that would deposit metal wire, while the spindle robot would machine the metal to smooth out the surface. 
+        Based out of Yorktown Heights, New York, I received my B.S. in Mechanical Engineering from Rensselaer Polytechnic Institute (RPI) in Troy, NY. I continued my education at RPI and specialized in control systems. As a graduate research assistant, I worked on a team focused on developing hybrid manufacturing, using two robots to demonstrate additive and subtractive manufacturing with metal parts. This system consisted of one repurposed welding robot that would deposit metal wire, while the spindle robot would machine the metal to smooth out the surface.
+      </p>
 
-After receiving my Masters of Engineering in Mechanical Engineering, I went on to work at Sikorsky, a Lockheed Martin Company in Stratford, CT. There I worked on electrical builds and installs on aircraft, including MH-60R Naval Hawk and developmental FARA aircraft. I contributed to an automation project that placed electrical pins into connectors used on aircraft. Additionally, I guided electrical routing paths on the developmental FARA aircraft. 
+      <p class="bio">
+        After receiving my Masters of Engineering in Mechanical Engineering, I went on to work at Sikorsky, a Lockheed Martin Company in Stratford, CT. There I worked on electrical builds and installs on aircraft, including MH-60R Naval Hawk and developmental FARA aircraft. I contributed to an automation project that placed electrical pins into connectors used on aircraft. Additionally, I guided electrical routing paths on the developmental FARA aircraft.
+      </p>
 
-I then went on to work at eMagin, a Samsung Display Company in Hopewell Junction, New York. Here I spearheaded the qualification process for an adhesive dispensing and glass lens placement tool.  I have also lead yield improvement efforts, developed a custom consumable estimator, and routinely trouble shoot equipment issues. 
+      <p class="bio">
+        I then went on to work at eMagin, a Samsung Display Company in Hopewell Junction, New York. Here I spearheaded the qualification process for an adhesive dispensing and glass lens placement tool. I have also lead yield improvement efforts, developed a custom consumable estimator, and routinely trouble shoot equipment issues.
+      </p>
 
-Take a look at some of my hobby projects below that showcase my mechanical design, controls, electronics, and software programming skills. 
+      <p class="bio">
+        Take a look at some of my hobby projects below that showcase my mechanical design, controls, electronics, and software programming skills.
       </p>
       
       <div class="edu-cert-grid">
@@ -305,6 +315,7 @@ Take a look at some of my hobby projects below that showcase my mechanical desig
 
         <h4>MPU6050 Filtering</h4>
         <p>This system uses a complementary filter for the angle measurements. The weighting is 99% gyroscope 1% accelerometer. Accuracy is within 0.2 degrees.</p>
+      </div>
 
       <div class="links">
         <a href="https://github.com/" target="_blank">View Code on GitHub</a>
