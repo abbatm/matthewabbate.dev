@@ -231,7 +231,7 @@
     <img src="photo.jpg" alt="Matthew Abbate">
     <div class="about-text">
       <p class="bio">
-        Hey, I'm Matthew. I am a Controls Engineer who loves getting into the weeds where code, circuits, and mechanical parts meet. I spend most of my time building and tuning things that move, from self-balancing robots to high-performance drones. I'm always looking for ways to make systems more efficient and responsive, and you can see some of my favorite builds below.
+        I am an engineer who loves getting into the weeds where code, circuits, and mechanical parts meet. Check out some of my favorite builds below!
       </p>
     </div>
   </div>
@@ -265,20 +265,16 @@
       </div>
 
       <div class="summary">
-        <p>This project is a self-balancing robot built on the ESP32 platform using an MPU6050 IMU for tilt sensing and stepper motors for movement.</p>
+        <p>This is a self-balancing robot built on the ESP32 microcontroller, using an MPU6050 IMU for tilt sensing, 2 NEMA 17 stepper motors, 2 A4988 motor drivers, blue,yellow and green LED indicators, and a piezo buzzer for sound.</p>
 
         <h4>The Control System</h4>
-        <p>I used a cascaded PID setup to keep everything stable. The outer PI loop handles the velocity by figuring out the right lean angles while the inner PD loop keeps it balanced. It pulls tilt data from the IMU and calculates motor corrections 100 times every second.</p>
+        <p>I used a cascaded PID to control this robot. The outer PI loop handles the velocity while the inner PD loop keeps it balanced. The MPU6050 IMU outputs acceleration and gyroscope date. From this, it can detect the angle of lean and drive the motors to counter-act this lean at 100 Hz.</p>
 
         <h4>Wireless PS4 Control</h4>
-        <p>For steering, I am using a PS4 controller connected via the Bluepad32 library. The left stick controls the throttle and the X axis handles the steering. I also added some adaptive filtering and speed dependent gains so it does not get twitchy or flip over when you are turning at high speeds.</p>
+        <p>For steering, I am using a PS4 controller connected via the Bluepad32 library. The left stick controls the throttle and the X axis handles the steering. I also added some adaptive filtering and speed dependent gains to increase stability at higher speeds.</p>
 
-        <h4>Sensor Fusion</h4>
-        <p>To get the tilt angle right, I went with a complementary filter instead of a heavy Kalman filter. It basically trusts the gyroscope for 99 percent of the data to get that fast response, and then uses the accelerometer for the last 1 percent just to fix any drift. It is super efficient and keeps the accuracy within 0.2 degrees.</p>
-
-        <h4>Efficiency and Processing</h4>
-        <p>The code is entirely non-blocking and event-driven. Since the ESP32 has two cores, I split the workload to keep it responsive. Core 1 is dedicated to the time-critical stuff like balance math and pulsing the stepper motors. Meanwhile, Core 0 handles the Bluetooth connection. I also bumped the I2C speed to 400kHz and disabled the standard BLE to make sure there is zero lag in the controls.</p>
-      </div>
+        <h4>MPU6050 Filtering</h4>
+        <p>This system uses a complementary filter for the angle measurements. The weighting is 99% gyroscope 1% accelerometer. Accuracy is within 0.2 degrees.</p>
 
       <div class="links">
         <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank">View Code on GitHub</a>
@@ -299,12 +295,11 @@
       </div>
 
       <div class="summary">
-        <p>Following the industry-standard FPV architecture, I built a custom high-performance quadcopter from the ground up with a focus on clean electrical assembly and control theory.</p>
+        <p>This project demonstrates a high-performance FPV (first person view) quadcopter, from electrical assembly and to the controls tuning. Some aspects tuned included the PID gains via recorded flight data, designing filters to filter out resonance vibrations, and using feedforward input.</p>
         <ul class="drone-list">
-          <li>Assembled a high-strength carbon fiber frame designed for durability and optimal weight distribution of the electronic stack.</li>
-          <li>Soldered a 4-in-1 Electronic Speed Controller (ESC) to high-KV brushless motors, ensuring clean signal paths and robust power delivery for 6S battery voltage.</li>
-          <li>Configured the Betaflight flight controller firmware, including motor resource remapping and peripheral setup for the ELRS radio link and FPV video system.</li>
-          <li>Performed field-tuning of the PID (Proportional-Integral-Derivative) controller to eliminate prop-wash oscillations and achieve a "locked-in" flight feel.</li>
+          <li>Soldered a 4-in-1 Electronic Speed Controller (ESC) to brushless DC motors, ensuring clean signal paths.</li>
+          <li>Configured the Betaflight flight controller firmware, including motor resource remapping, ELRS radio communication and FPV video system.</li>
+          <li>Performed field-tuning of the PID controller to eliminate prop-wash oscillations and achieve high responsiveness.</li>
           <li>Implemented Blackbox data logging to analyze flight performance and fine-tune dynamic notch filters for motor noise reduction.</li>
         </ul>
       </div>
